@@ -1,0 +1,82 @@
+.editor {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #cccccc42;
+    border: 2px solid rgba(0, 0, 0, 0.103);
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+}
+
+.btn1 {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: all ease 0.1s;
+}
+
+.content {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 200px;
+    border-top: 1px solid rgba(0, 0, 0, 0.26);
+    padding: 4px;
+}
+
+.content:focus {
+    outline: none;
+}
+
+.activeBtn {
+    background-color: #00000042;
+    color: #ffffff;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+#tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+#tag-container>div {
+    background-color: #f0f0f0;
+    color: #555;
+    border-radius: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    padding: 4px 8px;
+}
+
+#tag-container>div:last-child {
+    margin-right: 0;
+}
+
+#tags {
+    border: none;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+}
+
+#tags:focus {
+    outline: none;
+}
