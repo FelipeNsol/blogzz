@@ -49,3 +49,14 @@ function saveContent() {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`content=${encodeURIComponent(content)}`);
 }
+
+textEditor = document.getElementById('textEditor')
+
+textEditor.addEventListener('DOMSubtreeModified', function() {
+    document.getElementById('textEditorValue').value = textEditor.innerHTML   
+    if (textEditor.innerHTML === "") {
+        document.getElementById('submitBtn').type = 'button'
+    } else {
+        document.getElementById('submitBtn').type = 'submit'
+    }
+  });

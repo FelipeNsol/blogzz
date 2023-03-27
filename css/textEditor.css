@@ -42,10 +42,18 @@
     color: #ffffff;
 }
 
-main {
+form {
     width: 80%;
     margin: 0 auto;
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form .btn-green {
+    width: 200px;
+    margin-top: 24px;
 }
 
 #tag-container {
