@@ -10,6 +10,9 @@ $title = end($segments);
 $date = $segments[count($segments) - 2];
 
 $postContent = $db->getPostContent($date, $title);
+$titleOfThePage = $postContent['title'];
+$keywordsOfThePage = $postContent['categories'];
+$descriptionOfThePage = $postContent['subtitle'];
 ?>
 
 <!DOCTYPE html>
@@ -17,9 +20,9 @@ $postContent = $db->getPostContent($date, $title);
 
 <head>
     <meta charset="utf-8" />
-    <title>Logzz blog</title>
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="" />
+    <title><?php echo $titleOfThePage ?> - Logzz Blog</title>
+    <meta name="keywords" content="<?php echo $keywordsOfThePage ?>" />
+    <meta name="description" content="<?php echo $descriptionOfThePage ?>" />
     <meta name="author" content="Forum" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -69,7 +72,7 @@ $postContent = $db->getPostContent($date, $title);
                             <a style="padding-right: 5px;">👋</a>
                             <a href="#">Bem vindo à central de ajuda do BotConversa!</a>
                         </div>
-                        <a href="index.html">COMECE POR AQUI! - AULAS SEQUÊNCIAIS</a>
+                        <a href="../../index.php">COMECE POR AQUI! - AULAS SEQUÊNCIAIS</a>
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item especific">
                                 <h2 class="accordion-header" id="headingOne">
@@ -79,7 +82,7 @@ $postContent = $db->getPostContent($date, $title);
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <a href="aula-1.html">
+                                        <a href="../../aula-1.php">
                                             <div class="accordion-body">
                                                 <strong>Aula 1</strong> Example.
                                             </div>
@@ -113,13 +116,26 @@ $postContent = $db->getPostContent($date, $title);
                     </div>
                     <div class="col-9" style="margin-left: 20px;">
                         <?php
-                        echo '<div><img src="'. $postContent['image'].'"/></div>';
+                        echo '<div><img src="../../'. $postContent['image'].'"/></div>';
                         echo '<h1 style="color: #3b454e">' . $postContent['title'] . '</h1>';
                         echo '<h6 style="color: #8899a8">' . $postContent['subtitle'] . '</h6>';
                         echo '<p>' . $postContent['content'] . '</p>';
                         ?>
                     </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.js"
+        integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script src="/assets/js/wow.min.js"></script>
+    <script src="/assets/js/glightbox.min.js"></script>
+    <script src="/assets/js/count-up.min.js"></script>
+    <script src="/assets/js/particles.min.js"></script>
+    <script src="/assets/js/main.js"></script>
     <script src="https://kit.fontawesome.com/2eacbb5535.js" crossorigin="anonymous"></script>
 </body>
 

@@ -19,7 +19,7 @@ class Database {
 
     protected function getPosts()
     {
-        $stmt = $this->conn->query("SELECT * FROM posts");
+        $stmt = $this->conn->query("SELECT * FROM posts ORDER BY create_time DESC");
         $posts = $stmt->fetchAll();
         return $posts;
     }
@@ -31,7 +31,7 @@ class Database {
             $strDate = strtotime($post['create_time']);
             $date = date('d-m-Y H:i', $strDate);
             $dateUrl = date('d-m-Y', $strDate);
-            echo '<tr><td>'.$post['title'].'</td><td>'.$post['creator'].'</td><td>'.$post['categories'].'</td><td>'.$date.'</td><td><a target="blank" href="post-page.php/'.$dateUrl.'/'.urlencode($post['title']).'"><button class="btn btn-green small"><i class="bi bi-box-arrow-up-right"></i></button></a><button class="btn btn-green small"><i class="bi bi-pencil-fill"></i></button></td></tr>';
+            echo '<tr><td>'.$post['title'].'</td><td>'.$post['creator'].'</td><td>'.$post['categories'].'</td><td>'.$date.'</td><td><a target="blank" href="post-page.php/'.$dateUrl.'/'.urlencode($post['title']).'"><button class="btn btn-green small"><i class="bi bi-box-arrow-up-right"></i></button></a><a target="blank" href="update-post.php?date='.$dateUrl.'&title='.urlencode($post['title']).'"><button class="btn btn-green small"><i class="bi bi-pencil-fill"></i></button></a></td></tr>';
         }
     }
 
@@ -53,6 +53,17 @@ class Database {
         $stmt->execute();
         $result = $stmt->fetch();
         return $result;
+    }
+
+    public function updatePostContent($id, $title, $content, $subtitle) {
+        $stmt = $this->conn->prepare("UPDATE `posts`
+        SET title = :TITLE, subtitle = :SUBTITLE, content = :CONTENT
+        WHERE id = :ID;");
+        $stmt->bindParam(":ID", $id);
+        $stmt->bindParam(":TITLE", $title);
+        $stmt->bindParam(":SUBTITLE", $subtitle);
+        $stmt->bindParam(":CONTENT", $content);
+        $stmt->execute();
     }
 }
 

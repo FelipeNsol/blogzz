@@ -1,13 +1,14 @@
 <?php
 include_once 'database.class.php';
 $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
+$postContent = $db->getPostContent($_GET['date'], $_GET['title']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <title>Criar novo post - BotCoversa</title>
+    <title>Editar post - BotCoversa</title>
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="" />
     <meta name="author" content="Forum" />
@@ -47,46 +48,31 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
             array_push($arrayOfCategories, $object->value);
         }
         $formatted_categories = implode(", ", $arrayOfCategories);
-        $db->uploadPost($_POST['title'], $_POST['textEditorValue'], 'admin', $formatted_categories, $imgPath, $_POST['subtitle']);
+        $db->updatePostContent($_POST['id'], $_POST['title'], $_POST['textEditorValue'], $_POST['subtitle']);
         header('Location: ./create-post.php');
         exit;
     }
     ?>
     <form name='postForm' method="POST" enctype="multipart/form-data">
+        <input type='text' style="display: none;" name="id" value="<?php echo $postContent['id']?>">
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Título</span>
-            <input type="text" name='title' class="form-control" placeholder="Digite o título da postagem aqui..." aria-label="Título" required />
+            <input type="text" name='title' class="form-control" placeholder="Digite o título da postagem aqui..." aria-label="Título" required value="<?php echo $postContent['title']?>" />
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Subtítulo</span>
-            <input type="text" name='subtitle' class="form-control" placeholder="Digite o subtítulo da postagem aqui..." aria-label="Subtítulo" required />
+            <input type="text" name='subtitle' class="form-control" placeholder="Digite o subtítulo da postagem aqui..." aria-label="Subtítulo" required value="<?php echo $postContent['subtitle']?>"/>
         </div>
-        <div class="input-group mb-3">
-            <input name="tags" required class="form-control" placeholder="Escreva as categorias separadas por vírgulas">
-        </div>
-        <div id='imgWrapper'></div>
-        <div class="input-group mb-3" placeholder="Escolher imagem de fundo">
-            <input type='file' id='image' onchange="displayImage()" name='image' accept="image/png, image/gif, image/jpeg, image/webp">
-        </div>
+        <div id='imgWrapper'><img src="./<?php echo $postContent['image']?>"></div>
         <div class='editorWrapper'>
             <div id="editor">
-                <h1>Olá mundo!</h1>
-                <p>Comece <strong>escrevendo</strong> agora</p>
-                <p><br></p>
+                <?php echo $postContent['content'] ?>
             </div>
         </div>
-        <input type='text' style='display: none;' name='textEditorValue' id='textEditorValue' />
+        <input type='text' style='display: none;' name='textEditorValue' id='textEditorValue' value='<?php echo $postContent['content'] ?>' />
         <button type="submit" id='submitBtn' name='submit' class="btn btn-green">Salvar</button>
     </form>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src='js/textEditor.js'></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.17.7/tagify.min.js" integrity="sha512-BO4lu2XUJSxHo+BD3WLBQ9QoYgmtSv/X/4XFsseeCAxK+eILeyEXtGLHFs2UMfzNN9lhtoGy8v8EMFPIl8y+0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        var input = document.querySelector('input[name=tags]')
-        tagify = new Tagify(input);
-        input.addEventListener('change', console.log(input.value))
-    </script>
 </body>
-
 </html>

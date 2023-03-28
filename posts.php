@@ -7,7 +7,7 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom')
 
 <head>
     <meta charset="utf-8" />
-    <title>Primeiros passos - BotCoversa</title>
+    <title>Todas as postagens - BotCoversa</title>
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="" />
     <meta name="author" content="Forum" />
@@ -27,11 +27,12 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom')
 
     <!--====== Favicon Icon ======-->
 </head>
+
 <body>
     <header>
         <h3>Todos as postagens</h3>
         <span>
-            <button class='btn btn-green'><i class="bi bi-plus-circle-fill"></i> Novo usuário</button>
+            <a href="./create-post.php"><button class='btn btn-green'><i class="bi bi-plus-circle-fill"></i> Novo Post</button></a>
             <button class='btn btn-green'><i class="bi bi-funnel-fill"></i> Filtros</button>
         </span>
     </header>
@@ -46,4 +47,5 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom')
         <?php $db->getPostsInRows() ?>
     </table>
 </body>
+
 </html>

@@ -7908,3 +7908,11 @@ html.ie.gecko body.modal-new-open {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg); }
 
+    img {
+      max-width: 100%;
+      margin-bottom: 12px;
+  }
+  iframe {
+    width: 100%;
+    aspect-ratio: 2;
+  }
