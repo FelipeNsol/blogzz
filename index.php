@@ -105,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-9" style="margin-left: 20px;">
+                    <div class="col-9">
                         <div>
                             <img class="img-paisagem" src="https://fastly.picsum.photos/id/13/2500/1667.jpg?hmac=SoX9UoHhN8HyklRA4A3vcCWJMVtiBXUg0W4ljWTor7s">
                         </div>

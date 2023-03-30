@@ -45,7 +45,7 @@ $descriptionOfThePage = $postContent['subtitle'];
             <div class="row">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-expand-sm">
-                        <a class="navbar-brand" href="index.html" style="width: 250px; height: auto;">
+                        <a class="navbar-brand" href="../../index.php" style="width: 250px; height: auto;">
                             <img width="200" height="50" src="https://logzz.com.br/wp-content/uploads/2022/06/Ativo-1.svg" alt="Logo" />
                         </a>
                         <div class="input-group d-flex justify-content-end" style="margin-right: 100px;">
@@ -66,8 +66,8 @@ $descriptionOfThePage = $postContent['subtitle'];
     <main id="tt-pageContent" class="tt-offset-small my-lg-5 my-md-5">
         <div class="container">
             <div class="tt-topic-list">
-                <div class="col-12 d-flex">
-                    <div class="col-3" style="overflow-y: scroll; margin-right: 10%;">
+                <div class="col-12 d-flex" style="width: 100vw;">
+                    <div class="col-3" style="overflow-y: scroll;">
                         <div class="d-flex" style="margin-bottom: 30px;">
                             <a style="padding-right: 5px;">👋</a>
                             <a href="#">Bem vindo à central de ajuda do BotConversa!</a>
@@ -114,7 +114,7 @@ $descriptionOfThePage = $postContent['subtitle'];
                             </div>
                         </div>
                     </div>
-                    <div class="col-9" style="margin-left: 20px;">
+                    <div class="col-9">
                         <?php
                         echo '<div><img src="../../'. $postContent['image'].'"/></div>';
                         echo '<h1 style="color: #3b454e">' . $postContent['title'] . '</h1>';

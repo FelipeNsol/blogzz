@@ -55,14 +55,50 @@ class Database {
         return $result;
     }
 
-    public function updatePostContent($id, $title, $content, $subtitle) {
+    public function updatePostContent($id, $title, $content, $subtitle, $imgPath) {
         $stmt = $this->conn->prepare("UPDATE `posts`
-        SET title = :TITLE, subtitle = :SUBTITLE, content = :CONTENT
+        SET title = :TITLE, subtitle = :SUBTITLE, content = :CONTENT, image = :IMAGE
         WHERE id = :ID;");
         $stmt->bindParam(":ID", $id);
         $stmt->bindParam(":TITLE", $title);
         $stmt->bindParam(":SUBTITLE", $subtitle);
         $stmt->bindParam(":CONTENT", $content);
+        $stmt->bindParam(":IMAGE", $imgPath);
+        $stmt->execute();
+    }
+
+    public function getDepartamentos() {
+        $stmt = $this->conn->query("SELECT * FROM departamentos ORDER BY create_time DESC");
+        $departamentos = $stmt->fetchAll();
+        return $departamentos;
+    }
+
+    public function getCategorias() {
+        $stmt = $this->conn->query("SELECT * FROM categorias ORDER BY create_time DESC");
+        $departamentos = $stmt->fetchAll();
+        return $departamentos;
+    }
+
+    public function uploadCategory($name, $departamento, $situacao) {
+            $stmt = $this->conn->prepare("INSERT INTO `categorias` (`id`, `name`, `create_time`, `departamento`, `situacao`) VALUES (UNIX_TIMESTAMP(NOW()), :NAME, NOW(), :DEPARTAMENTO, :SITUACAO);");
+            $stmt->bindParam(':NAME', $name);
+            $stmt->bindParam(':DEPARTAMENTO', $departamento);
+            $stmt->bindParam(':SITUACAO', $situacao);
+            $stmt->execute();
+    }
+
+    public function deleteCategory($id) {
+        $stmt = $this->conn->prepare("DELETE FROM `categorias` WHERE (`id` = :ID);");
+        $stmt->bindParam(':ID', $id);
+        $stmt->execute();
+    }
+
+    public function updateCategory($id, $name, $department, $situation) {
+        $stmt = $this->conn->prepare("UPDATE `categorias` SET `name` = :NAME, `departamento` = :DEPARTMENT, `situacao` = :SITUATION WHERE (`id` = :ID);");
+        $stmt->bindParam(':ID', $id);
+        $stmt->bindParam(':DEPARTMENT', $department);
+        $stmt->bindParam(':NAME', $name);
+        $stmt->bindParam(':SITUATION', $situation);
         $stmt->execute();
     }
 }

@@ -48,3 +48,18 @@ td {
 table tr th, table tr td {
     width: 15%;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 80vh;
+}
+
+main span {
+    align-self: flex-end;
+}
+
+main span .btn {
+    margin-right: 12px;
+}

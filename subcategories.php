@@ -37,44 +37,46 @@ $categories = explode(", ", $postContent['categories']);
 <body>
     <?php
     if (isset($_POST['submit'])) {
-        $file = $_FILES['image']['name'];
-        $destdir = 'img/';
-        if ($file !== '') {
-            $imgPath = $destdir . substr($file, strrpos($file, '/'));
-        } else {
-            $imgPath = $postContent['image'];
-        }
-        move_uploaded_file($_FILES['image']['tmp_name'], $imgPath);
-        $db->updatePostContent($_POST['id'], $_POST['title'], $_POST['textEditorValue'], $_POST['subtitle'], $imgPath);
-        header("Location: ./post-page.php/".$_GET['date']."/".$_GET['title']);
+        $formattedCategories = implode(', ', $_POST['category']);
+        $db->updatePostCategories($postContent['id'], $formattedCategories);
+        header("Refresh: 0");
         exit;
     }
     ?>
     <form name='postForm' method="POST" enctype="multipart/form-data">
-        <input type='text' style="display: none;" name="id" value="<?php echo $postContent['id'] ?>">
+        <h1 style='margin: 24px 0px; align-self:flex-start;'>Escolha as Subcategorias</h1>
         <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Título</span>
-            <input type="text" name='title' class="form-control" placeholder="Digite o título da postagem aqui..." aria-label="Título" required value="<?php echo $postContent['title'] ?>" />
+            <input type="text" id='categoryText' class="form-control" placeholder="Nova subcategoria" aria-label="Nova subcategoria" aria-describedby="basic-addon2">
+            <span class="input-group-text"><button type='button' class="btn btn-primary" id='addCategory'>Adicionar</button></span>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Subtítulo</span>
-            <input type="text" name='subtitle' class="form-control" placeholder="Digite o subtítulo da postagem aqui..." aria-label="Subtítulo" required value="<?php echo $postContent['subtitle'] ?>" />
+        <div id="listOfCategories">
+            <?php foreach ($categories as $category) {
+                echo "<div class='itemList'><input type='text' readonly class='itemList' name='category[]' value='$category'/>
+                <input type='checkbox'></div>";
+            } ?>
         </div>
-        <div id='imgWrapper'><img src="./<?php echo $postContent['image'] ?>"></div>
-        <div class="input-group mb-3" placeholder="Escolher imagem de fundo">
-            <input type='file' value="./<?php echo $postContent['image'] ?>" id='image' onchange="displayImage()" name='image' accept="image/png, image/gif, image/jpeg, image/webp">
-        </div>
-        <div class='editorWrapper'>
-            <div id="editor">
-                <?php echo $postContent['content'] ?>
-            </div>
-        </div>
-        <input type='text' style='display: none;' name='textEditorValue' id='textEditorValue' value='<?php echo $postContent['content'] ?>' />
         <button type="submit" id='submitBtn' name='submit' class="btn btn-green">Salvar</button>
-        
+
     </form>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src='js/textEditor.js'></script>
+    <script src="js/sortable.min.js"></script>
+    <script>
+        const list = document.getElementById('listOfCategories')
+        new Sortable(list, {
+            animation: 150,
+            ghostClass: 'blue-background-class'
+        });
+
+        const addNew = document.getElementById('addCategory');
+        addNew.addEventListener('click', () => {
+            if (document.getElementById('categoryText').value !== '') {
+                document.getElementById('listOfCategories').innerHTML = `<div class="itemList"><input class='itemList' type="text" readonly name="category[]" value="${document.getElementById('categoryText').value}"/><input type='checkbox'></div>` + document.getElementById('listOfCategories').innerHTML
+            }
+            document.getElementById('categoryText').value = '';
+        })
+
+    </script>
 </body>
 
 </html>

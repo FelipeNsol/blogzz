@@ -7909,10 +7909,53 @@ html.ie.gecko body.modal-new-open {
     transform: rotate(45deg); }
 
     img {
-      max-width: 100%;
+      max-width: 90%;
       margin-bottom: 12px;
   }
   iframe {
     width: 100%;
     aspect-ratio: 2;
+  }
+
+  main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 12px 0px;
+  }
+
+  main .contained {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 300px;
+  }
+
+  .input-group {
+    display: flex;
+    justify-content: center;
+  }
+
+  .modal-content .icon {
+    font-size: 46px;
+    padding: 12px;
+    background-color: #e72f2f;
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+    color: white;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+  .modal-content .icon .bi::before {
+    color: white;
+  }
+
+  .container {
+    width: 100vw;
   }

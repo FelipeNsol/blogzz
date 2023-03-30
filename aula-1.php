@@ -107,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-9" style="margin-left: 20px;">
+                    <div class="col-9">
                         <h1 style="color: #3b454e">AULA 1 - O que fazer ao adquirir o BotConversa?</h1>
                         <br>
                         <h6 style="color: #8899a8">Nessa aula você poderá ver o que fazer logo após adquirir o seu
