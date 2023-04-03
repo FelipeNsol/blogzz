@@ -49,69 +49,13 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
                     <h4 class="modal-title">Excluir categoria</h4>
                     <p>Tem certeza que deseja excluir?</p>
                     <span>
-                        <button type='button' class="btn bg-success" data-bs-dismiss="modal">Cancelar</button>
-                        <button class="btn bg-danger" name='excluir'>Excluir</button>
+                        <button type='button' class="btn bg-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn bg-success" name='excluir'>Excluir</button>
                     </span>
                 </div>
             </form>
         </div>
     </div>
-    <!--Modal edit !-->
-    <div class="modal fade" id="editModal">
-        <div class="modal-dialog">
-            <form class="modal-content" method='POST'>
-                <?php
-                if (isset($_POST['editar'])) {
-                    $situationSelect = $_POST['situation'];
-                    if ($situationSelect === 'ativo') {
-                        $situationValue = 1;
-                    } else {
-                        $situationValue = 0;
-                    }
-                    $db->updateCategory($_POST['editId'], $_POST['editName'], $_POST['department'], $situationValue);
-                    header('location: ./categorias.php');
-                    exit;
-                }
-                ?>
-                <div class="modal-body">
-                    <input type='text' name='editId' id='editId' class='d-none' />
-                    <h4 class="modal-title">Editar categoria</h4>
-                    <div class='center'>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">Nome</span>
-                            <input type='name' name='editName' id='editName' />
-                        </div>
-                        <div class='contained'>
-                            <span>
-                                <h5>Departamento principal</h5>
-                                <select class="form-select form-select-lg mb-3 bs-success" name='department' aria-label=".form-select-lg example" id='editSelect'>
-                                    <option value='Nenhum'>Nenhum</option>
-                                    <?php
-                                    $departamentos = $db->getDepartamentos();
-                                    foreach ($departamentos as $departamento) {
-                                        echo '<option value="' . $departamento['name'] . '">' . $departamento['name'] . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </span>
-                            <span>
-                                <h5>Situação</h5>
-                                <select class="form-select form-select-lg mb-3 bs-success" name='situation' aria-label=".form-select-lg example" id='editSituation'>
-                                    <option value="ativo" selected>Ativo</option>
-                                    <option value="inativo">Inativo</option>
-                                </select>
-                            </span>
-                        </div>
-                        <span>
-                            <button type='button' class="btn bg-danger" data-bs-dismiss="modal">Cancelar</button>
-                            <button class="btn bg-success" name='editar'>Salvar</button>
-                        </span>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <header>
         <h3>Listagem de categorias</h3>
         <span>
@@ -135,7 +79,7 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
             } else {
                 $situacao = 'ativo';
             }
-            echo "<tr><td>" . $departamento['name'] . "</td><td>" . $departamento['departamento'] . "</td><td>$situacao</td><td><button onClick=" . '"' . "setEdit('" . $departamento['id'] . "', '" . $departamento['name'] . "', '$situacao', '" . $departamento['departamento'] . "')" . '"' . " data-bs-toggle='modal' data-bs-target='#editModal' class='btn btn-green small'><i class='bi bi-pencil-fill'></i></button><button data-bs-toggle='modal' data-bs-target='#deleteModal' onClick='setExclusion(" . $departamento['id'] . ")' class='btn btn-green small'><i class='bi bi-trash-fill'></i></button></td></tr>";
+            echo "<tr><td>" . $departamento['name'] . "</td><td>" . $departamento['departamento'] . "</td><td>$situacao</td><td><a href='./editar-categoria.php?id=".$departamento['id']."'><button class='btn btn-green small'><i class='bi bi-pencil-fill'></i></button></a><button data-bs-toggle='modal' data-bs-target='#deleteModal' onClick='setExclusion(" . $departamento['id'] . ")' class='btn btn-green small'><i class='bi bi-trash-fill'></i></button></td></tr>";
         } ?>
     </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
@@ -144,14 +88,6 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
             document.getElementById('excludeId').value = id
         }
 
-        function setEdit(id, name, situation, department) {
-            console.log(id)
-            document.getElementById('editId').value = id;
-            document.getElementById('editName').value = name;
-            document.getElementById('editSituation').value = situation;
-            document.getElementById('editSelect').value = department;
-
-        }
     </script>
 
 </html>

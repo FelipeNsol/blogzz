@@ -40,14 +40,8 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
         //$img = file_get_contents($file);
         $imgPath = $destdir . substr($file, strrpos($file, '/'));
         move_uploaded_file($_FILES['image']['tmp_name'], $imgPath);
-
-        $categories = json_decode($_POST['tags']);
-        $arrayOfCategories = [];
-        foreach ($categories as $tag => $object) {
-            array_push($arrayOfCategories, $object->value);
-        }
-        $formatted_categories = implode(", ", $arrayOfCategories);
-        $db->uploadPost($_POST['title'], $_POST['textEditorValue'], 'admin', $formatted_categories, $imgPath, $_POST['subtitle']);
+        
+        $db->uploadPost($_POST['title'], $_POST['textEditorValue'], 'admin', $_POST['categorias'], $imgPath, $_POST['subtitle']);
         header('Location: ./create-post.php');
         exit;
     }
@@ -61,9 +55,13 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
             <span class="input-group-text" id="basic-addon1">Subtítulo</span>
             <input type="text" name='subtitle' class="form-control" placeholder="Digite o subtítulo da postagem aqui..." aria-label="Subtítulo" required />
         </div>
-        <div class="input-group mb-3">
-            <input name="tags" required class="form-control" placeholder="Escreva as categorias separadas por vírgulas">
-        </div>
+        <select name='categorias' class="form-select" aria-label="Default select example" placeholder='Selecione a categoria'>
+            <option value="" disabled selected>Selecione a categoria</option>
+            <?php $categorias = $db->getCategorias();
+                foreach($categorias as $categoria) {
+                echo "<option value=".$categoria['name'].">".$categoria['name']."</option>";    }
+            ?>
+        </select>
         <div id='imgWrapper'></div>
         <div class="input-group mb-3" placeholder="Escolher imagem de fundo">
             <input type='file' id='image' onchange="displayImage()" name='image' accept="image/png, image/gif, image/jpeg, image/webp">

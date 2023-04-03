@@ -87,6 +87,14 @@ class Database {
             $stmt->execute();
     }
 
+    public function getCategoria($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM categorias WHERE id = :ID");
+        $stmt->bindValue(':ID', $id);
+        $stmt->execute();
+        $categoria = $stmt->fetch();
+        return $categoria;
+    }
+
     public function deleteCategory($id) {
         $stmt = $this->conn->prepare("DELETE FROM `categorias` WHERE (`id` = :ID);");
         $stmt->bindParam(':ID', $id);

@@ -16,33 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `posts`
+-- Table structure for table `categorias`
 --
 
-DROP TABLE IF EXISTS `posts`;
+DROP TABLE IF EXISTS `categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `posts` (
+CREATE TABLE `categorias` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `title` text,
-  `subtitle` text,
-  `content` longtext,
-  `categories` text,
-  `creator` text,
-  `image` text,
+  `name` varchar(255) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `departamento` varchar(255) DEFAULT NULL,
+  `situacao` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1680520201 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1680522984 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `posts`
+-- Dumping data for table `categorias`
 --
 
-LOCK TABLES `posts` WRITE;
-/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1680021444,'Novo teste do blog','Isso é um teste para o blog da logzz, isso é só um monte de texto sem sentido. Isso é um teste para o blog da logzz, isso é só um monte de texto sem sentido. Isso é um teste para o blog da logzz, isso é só um monte de texto sem sentido.','<h1>Olá mundo!</h1><p><br></p><p>Comece <strong>escrevendo</strong> agora</p><p><br></p><p>Teste do blog Teste do blog</p><p><br></p><h2>Heading 2</h2><p><br></p><h3>Heading 3</h3><p><br></p><h1>YouTube embed video</h1><p><br></p><p><iframe src=\"https://www.youtube.com/embed/1PTs1mqrToM\" frameborder=\"0\" allowfullscreen=\"true\">﻿<span contenteditable=\"false\"></span>﻿</iframe></p><p><br></p>','','admin','img/ExpressJS.webp','2023-03-28 16:37:24'),(1680520200,'Oi','teste','','computadores','admin','img/ExpressJS.webp','2023-04-03 11:10:00');
-/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+LOCK TABLES `categorias` WRITE;
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` VALUES (1680176499,'asdasdadasda','2023-03-30 11:41:39','periféricos',1),(1680176529,'Certo','2023-03-30 11:42:09','periféricos',0),(1680176544,'computadores','2023-03-30 11:42:24','periféricos',1),(1680522983,'Certoaadds','2023-04-03 11:56:23','perfumes',1);
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-03 14:51:23
+-- Dump completed on 2023-04-03 14:51:22

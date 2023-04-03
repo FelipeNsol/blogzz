@@ -1,6 +1,7 @@
 <?php
 include_once 'database.class.php';
 $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
+$info = $db->getCategoria($_GET['id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,30 +35,34 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
     <?php
     if (isset($_POST['submit'])) {
         $situation = intval($_POST['situation']);
-        $db->uploadCategory($_POST['category'], $_POST['department'], $situation);
+        $db->updateCategory($_GET['id'], $_POST['category'], $_POST['department'], $situation);
         header('location: ./categorias.php');
         exit;
     }
 
     ?>
     <header>
-        <h3>Adicionar categoria</h3>
+        <h3>Editar categoria</h3>
     </header>
     <form name='postForm' method="POST">
         <main>
             <div class="input-group mb-3">
                 <span class="input-group-text">Categoria</span>
-                <input type="text" class="form-control" aria-label="Categoria" name='category' aria-describedby="basic-addon1">
+                <input type="text" class="form-control" value="<?php echo $info['name'] ?>" aria-label="Categoria" name='category' aria-describedby="basic-addon1">
             </div>
             <div class='contained'>
                 <span>
                     <h5>Departamento principal</h5>
                     <select class="form-select form-select-lg mb-3 bs-success" name='department' aria-label=".form-select-lg example">
-                        <option selected>Nenhum</option>
+                        <option value='nenhum'>Nenhum</option>
                         <?php
                         $departamentos = $db->getDepartamentos();
                         foreach ($departamentos as $departamento) {
-                            echo '<option value="' . $departamento['name'] . '">' . $departamento['name'] . '</option>';
+                            if ($departamento['name'] === $info['departamento']) {
+                                echo '<option selected value="' . $departamento['name'] . '">' . $departamento['name'] . '</option>';
+                            } else {
+                                echo '<option value="' . $departamento['name'] . '">' . $departamento['name'] . '</option>';
+                            }
                         }
                         ?>
                     </select>
@@ -79,5 +84,4 @@ $db = new Database('localhost', 'postagens', 'root', 'Pudimebom');
         </main>
     </form>
 </body>
-
 </html>
