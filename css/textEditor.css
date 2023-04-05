@@ -1,0 +1,166 @@
+.ql-toolbar, #editor, .ql-editor {
+    width: 100%;
+}
+
+.ql-toolbar {
+    display: flex;
+    align-items: center;
+}
+
+.ql-snow .ql-toolbar button {
+    height: fit-content;
+}
+
+form {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 24px;
+}
+
+form .btn-green {
+    width: 200px;
+}
+
+#tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+#tag-container>div {
+    background-color: #f0f0f0;
+    color: #555;
+    border-radius: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    padding: 4px 8px;
+}
+
+#tag-container>div:last-child {
+    margin-right: 0;
+}
+
+#tags {
+    border: none;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+}
+
+#tags:focus {
+    outline: none;
+}
+
+.ql-youtube-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .ql-youtube-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #imgWrapper {
+    margin-bottom: 12px;
+    max-width: 300px;
+    align-self: flex-start;
+}
+
+.ql-toolbar.ql-snow, .ql-container.ql-snow {
+    border: none;
+}
+
+.editorWrapper {
+    border: 1px solid rgba(0, 0, 0, 0.363);
+    width: 100%;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.ql-container.ql-snow {
+    background-color: #b5c5d35b;
+    border-radius: 4px;
+    min-height: 250px;
+    margin-top: 8px;
+}
+
+.itemList {
+    font-size: 20px;
+    border: 1px solid rgba(7, 7, 7, 0.185);
+    width: 100%;
+    padding: 8px 16px;
+    cursor: grab;
+    display: flex;
+    align-items: center;
+}
+
+.itemList input[type="text"] {
+    border: 0px;
+    outline: none;
+}
+
+.itemList input[type="checkbox"] {
+    display: block;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+#listOfCategories {
+    width: 100%;
+    border-radius: 8px;
+}
+
+form #image, form h6 {
+    align-self: flex-start;
+    margin: 12px 0px;
+}
+
+form .sidedWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+form .sidedWrapper select, form .sidedWrapper .input-group {
+    width: 49.5%;
+}
+
+form .sidedWrapper .input-group input, .sidedWrapper select{
+    height: 48px;
+    border-radius: 8px;
+    border-radius: 1px solid rgba(0, 0, 0, 0.342);
+}
+
+.buttonsWrapper {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 60px;
+    margin-top: 24px;
+}
+
+.buttonsWrapper button {
+    width: 148px;
+    height: 60px;
+    border-radius: 12px;
+}
+
+.sidedWrapper select {
+    outline: none;
+    cursor: pointer;
+}

@@ -1,0 +1,67 @@
+header {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    width: calc(100vw);
+    padding: 0 30px;
+    justify-content: space-between;
+    border-bottom: 1px solid #00000034;
+}
+
+header span {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    width: 95%;
+    margin: 0 auto;
+}
+
+table tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#tableTitles {
+    border-bottom: 1px solid #00000034;
+    margin-bottom: 12px;
+}
+
+th {
+    font-size: 16px;
+    margin: 12px 0px;
+    text-align: center;
+}
+
+td {
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-y: hidden;
+}
+
+table tr th, table tr td {
+    width: 15%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 40vh;
+    width: 100%;
+    max-width: 500px;
+}
+
+main span {
+    align-self: flex-end;
+}
+
+main span .btn {
+    margin-right: 12px;
+}
